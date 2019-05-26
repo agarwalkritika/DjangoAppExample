@@ -46,6 +46,23 @@
 </table>
 </p>
 <p>
+    <table border="1">
+    <caption>Language Information</caption>
+  <tr>
+    <th>Language</th>
+    <th>Official ?</th>
+    <th>Percentage</th>
+  </tr>
+    {% for language in res_language %}
+  <tr>
+    <td>{{ language.Language }}</td>
+    <td>{{ language.IsOfficial }}</td>
+    <td>{{ language.Percentage }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</p>
+<p>
     {{ error }}
 </p>
 <p>

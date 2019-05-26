@@ -9,7 +9,7 @@ from django.http import JsonResponse
 from .otp_handler import *
 from .forms import LoginForm, CustomUserForm, SearchBar
 from .exceptions import *
-from .models import CustomUser, CustomUserManager, Country, City
+from .models import CustomUser, CustomUserManager, Country, City, Language
 from .authorizer import auth_required, not_for_already_signed_users
 
 
@@ -108,8 +108,10 @@ def index(request):
             form_data = form.cleaned_data
             res_country = Country.objects.filter(Name__startswith=form_data['search_string'])
             res_city = City.objects.filter(Name__startswith=form_data['search_string'])
+            res_language = Language.objects.filter(Language__startswith=form_data['search_string'])
             context['res_country'] = res_country
             context['res_city'] = res_city
+            context['res_language'] = res_language
     except InvalidRequestException:
         context['error'] = "Invalid Request !!"
     return render(request=request, template_name='index.html', context=context)

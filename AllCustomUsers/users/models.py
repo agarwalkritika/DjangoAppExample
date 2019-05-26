@@ -98,10 +98,9 @@ class City(models.Model):
     Population = models.IntegerField(null=False, default=0)
 
 
-class CountryLanguage(models.Model):
-    CountryCode = models.ForeignKey('Country', on_delete=models.CASCADE, primary_key=True)
+class Language(models.Model):
+    CountryCode = models.ForeignKey('Country', on_delete=models.CASCADE)
     Language = models.CharField(max_length=30, null=False, default='')
     IsOfficial_Choices = [('T', 'T'), ('F', 'F')]
     IsOfficial = models.CharField(choices=IsOfficial_Choices, default=IsOfficial_Choices[1], max_length=2)
     Percentage = models.FloatField(null=False, default=0.0)
-
