@@ -32,6 +32,11 @@ def send_otp(user):
 
 
 def validate_otp(user, otp):
+    """
+    :param user: An object of the type models.CustomUser
+    :param otp: String (OTP) that the user has entered
+    :return: Boolean => if the user has successfully authenticated or not
+    """
     user_random = user.otp_random
     if not user_random:
         print("User has never been sent an OTP !!!")

@@ -3,6 +3,11 @@ from django.shortcuts import redirect
 
 
 def auth_required(func):
+    '''
+    Decorator to ensure that the user is logged in or not
+    :param func:
+    :return: Calling required function, if it satisfies 3 condition mentioned in code, otherwise redirecting to the login page
+    '''
     def new_func(*args, **kwargs):
         if args:
             request = args[0]
