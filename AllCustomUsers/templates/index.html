@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> Dashboard
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Search">
+</form>
+
+<p>
+    <table border="1">
+    <caption>Country Information</caption>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Continent</th>
+  </tr>
+    {% for country in res_country %}
+  <tr>
+    <td><a href="{% url 'country' country_code=country.Code %}">{{ country.Name }}</a></td>
+    <td>{{ country.Code }}</td>
+    <td>{{ country.Continent }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</p>
+<p>
+    <table border="1">
+    <caption>City Information</caption>
+  <tr>
+    <th>Name</th>
+    <th>Population</th>
+    <th>District</th>
+  </tr>
+    {% for city in res_city %}
+  <tr>
+    <td>{{ city.Name }}</td>
+    <td>{{ city.Population }}</td>
+    <td>{{ city.District }}</td>
+  </tr>
+    {% endfor %}
+</table>
+</p>
+<p>
+    {{ error }}
+</p>
+<p>
+    <a href="{% url 'logout' %}">Signout</a>
+</p>
+</body>
+</html>

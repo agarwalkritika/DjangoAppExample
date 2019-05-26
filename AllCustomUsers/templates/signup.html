@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> Signup Here
+    <meta charset="UTF-8">
+    <title>Signup Here !!</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+<p>
+    {{ error }}
+</p>
+<p>
+    <a href="{% url 'login' %}">Login</a>
+</p>
+</body>
+</html>
