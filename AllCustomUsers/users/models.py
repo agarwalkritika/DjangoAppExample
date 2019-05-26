@@ -1,7 +1,7 @@
 from django.db import models
 import time
 
-max_logged_in_time = 1 * 60 * 60 * 1000
+max_logged_in_time = 1 * 60 * 60 * 1000   # maximum time in milliseconds
 
 
 class CustomUser(models.Model):
@@ -39,10 +39,13 @@ class CustomUser(models.Model):
 
 
 class CustomUserManager:
+    '''
+    CustomUserManager: Class used to interact with Custom User Model
+    '''
     @staticmethod
     def get_user(email):
         """
-        :param email:
+        :param email: String type
         :return: CustomUser object if a valid user, else None
         """
         user = None
@@ -55,6 +58,10 @@ class CustomUserManager:
 
     @staticmethod
     def is_authenticated(email):
+        '''
+        :param email: String type
+        :return: False, if User is logged out ( time is greater than maximum time i.e. 1 hr)
+        '''
         result = False
         try:
             user = CustomUser.objects.get(email_id=email)

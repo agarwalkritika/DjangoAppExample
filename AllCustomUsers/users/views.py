@@ -1,7 +1,4 @@
 from django.shortcuts import render, redirect
-from django.core import serializers
-import logging
-import json
 
 # Create your views here.
 from django.shortcuts import render
@@ -15,6 +12,10 @@ from .authorizer import auth_required, not_for_already_signed_users
 
 @not_for_already_signed_users
 def signup(request):
+    '''
+    :param request: request object as passed by django
+    :return: Redirecting to Login Page if the form is valid i.e. form fields contains some value
+    '''
     context = {}
     try:
         if request.method == 'GET':
@@ -89,7 +90,6 @@ def logout(request):
         raise ex
     finally:
         # He has never logged in. Redirect to login page
-        form = LoginForm()
         return redirect('login')
 
 
